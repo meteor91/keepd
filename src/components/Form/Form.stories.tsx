@@ -19,7 +19,7 @@ export const Primary: Story = {
         <Form onSubmit={(data) => { console.log(data); }} defaultValues={{ name: '' }}>
             <Row>
                 <Col span={24}>
-                    <Form.FormInput name="name" label="Name"/>
+                    <Form.Input name="name" label="Name"/>
                 </Col>
             </Row>
             <Row>

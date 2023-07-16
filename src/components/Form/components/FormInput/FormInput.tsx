@@ -1,38 +1,42 @@
 import React from 'react';
-import { InputField } from '../../../InputField';
-import { useFormContext, Controller } from 'react-hook-form';
+import { useFormContext, Controller, type UseControllerProps } from 'react-hook-form';
+import { InputField, type InputFieldProps } from '../../../InputField';
+import { Col, Row } from '../../../Grid';
 
-export interface FormInputProps {
-    label?: string;
+export interface FormInputProps extends Omit<InputFieldProps, 'value'> {
     name: string;
-    placeholder?: string;
-    disabled?: boolean;
+    rules?: UseControllerProps['rules'];
 }
 
-export const FormInput: React.FC<FormInputProps> = (props: FormInputProps) => {
+export const FormInput: React.FC<FormInputProps> = (props) => {
     const {
         name,
         label,
-        placeholder,
-        disabled,
+        rules,
+        ...rest
     } = props;
     const methods = useFormContext();
 
     return (
-        <Controller
-            name={name}
-            control={methods.control}
-            render={({ field, fieldState }) => (
-                <InputField
-                    label={label}
-                    disabled={disabled}
-                    placeholder={placeholder}
-                    value={field.value}
-                    onChange={field.onChange}
-                    error={fieldState.invalid}
-                    message={fieldState.error?.message}
+        <Row>
+            <Col span={24}>
+                <Controller
+                    name={name}
+                    control={methods.control}
+                    rules={rules}
+                    render={({ field, fieldState }) => (
+                        <InputField
+                            label={label}
+                            name={name}
+                            {...rest}
+                            value={field.value}
+                            onChange={field.onChange}
+                            error={fieldState.invalid}
+                            message={fieldState.error?.message}
+                        />
+                    )}
                 />
-            )}
-        />
+            </Col>
+        </Row>
     );
 };

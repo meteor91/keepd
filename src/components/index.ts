@@ -7,3 +7,4 @@ export { Spin, type SpinProps } from './Spin';
 export { Row, Col } from './Grid';
 export { Form } from './Form';
 export { Text } from './Text';
+export { NavBar, type NavBarItem, type NavBarProps } from './NavBar';

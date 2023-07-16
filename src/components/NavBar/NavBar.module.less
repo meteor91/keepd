@@ -1,0 +1,55 @@
+@import "styles/colors.less";
+@import "styles/paragraphs.less";
+@import "styles/utils.less";
+
+.nav-bar {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 14px 0;;
+  width: 250px;
+
+  .border-shadow(@gray-200);
+
+  li {
+    list-style: none;
+    padding: 0;
+    cursor: pointer;
+
+    &:hover {
+      background: @gray-25;
+    }
+    .item {
+      margin: 10px 16px 10px 20px;
+      display: flex;
+      position: relative;
+
+      &:not(:last-child):after {
+        position: absolute;
+        bottom: -10px;
+        display: block;
+        width: calc(100% - 4px);
+        height: 1px;
+        background: @gray-50;
+        content: '';
+      }
+
+      .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 24px;
+        //height: 24px;
+        margin-right: 14px;
+
+      }
+
+      .label {
+        flex-grow: 1;
+        .paragraph-medium-4();
+
+        color: @gray-700;
+      }
+    }
+  }
+}

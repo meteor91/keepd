@@ -8,6 +8,8 @@ export interface InputProps {
     disabled?: boolean;
     error?: boolean;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    name?: string;
+    type?: 'password';
 }
 
 export const Input: React.FC<InputProps> = (props) => {
@@ -17,6 +19,8 @@ export const Input: React.FC<InputProps> = (props) => {
         disabled,
         error,
         onChange,
+        type,
+        name,
     } = props;
     return (
         <input
@@ -25,6 +29,8 @@ export const Input: React.FC<InputProps> = (props) => {
             onChange={onChange}
             value={value}
             disabled={disabled}
+            type={type}
+            name={name}
         />
     );
 };

@@ -1,5 +1,5 @@
 import type {Preview} from "@storybook/react";
-import '../src/styles/redrock.less';
+import styles from '../src/styles/redrock.less';
 
 const preview: Preview = {
     parameters: {
@@ -13,7 +13,7 @@ const preview: Preview = {
     },
     decorators: [
         (Story) => (
-            <div className='redrock storybook'>
+            <div className={`${styles.redrock} storybook`}>
                 {/* 👇 Decorators in Storybook also accept a function. Replace <Story/> with Story() to enable it  */}
                 <Story/>
             </div>

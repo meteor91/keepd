@@ -21,12 +21,6 @@ export const Button: React.FC<ButtonProps> = (props) => {
         type,
     } = props;
 
-    // useEffect(() => {
-    //     console.log('im here');
-    // }, []);
-
-    const [a, setA] = useState('bily');
-
     return (
         <button
             onClick={onClick}
@@ -34,7 +28,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
             disabled={disabled}
             type={type}
         >
-            {label} {a}
+            {label}
         </button>
     );
 };

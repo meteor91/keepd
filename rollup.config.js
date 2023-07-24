@@ -11,6 +11,8 @@ import * as packageJson from "./package.json" assert {type: "json"};
 export default [
     {
         input: "src/index.ts",
+        // TODO check external
+        external: ['react', 'react-dom'],
         output: [
             {
                 file: packageJson.main,
@@ -22,6 +24,12 @@ export default [
                 format: "esm",
                 sourcemap: true,
             },
+
+            {
+                file: 'local/redrock/dist/esm/index.js',
+                format: "esm",
+                sourcemap: true,
+            },
         ],
         plugins: [
             peerDepsExternal(),
@@ -30,13 +38,26 @@ export default [
             typescript({tsconfig: "./tsconfig.json"}),
             // terser(),
             postcss({
-                plugins: []
+                plugins: [],
+                use: {
+                    less: {
+                        paths: ['./src'],
+                    }
+                }
             })
         ],
     },
     {
         input: "dist/esm/types/index.d.ts",
         output: [{file: "dist/index.d.ts", format: "esm"}],
+        plugins: [dts.default()],
+        external: [/\.less$/],
+    },
+    {
+        input: "dist/esm/types/index.d.ts",
+        output: [
+            {file: "local/redrock/dist/index.d.ts", format: "esm"}
+        ],
         plugins: [dts.default()],
         external: [/\.less$/],
     },

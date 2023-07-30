@@ -54,9 +54,9 @@ export default [
         external: [/\.less$/],
     },
     {
-        input: "dist/esm/types/index.d.ts",
+        input: "local/keepd/dist/esm/types/index.d.ts",
         output: [
-            {file: "local/redrock/dist/index.d.ts", format: "esm"}
+            {file: "local/keepd/dist/index.d.ts", format: "esm"}
         ],
         plugins: [dts.default()],
         external: [/\.less$/],

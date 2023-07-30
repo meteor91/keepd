@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 
 import style from './Button.module.less';
 
-type Variant = 'primary' | 'secondary' | 'tertiary';
 export interface ButtonProps {
     label: string;
     disabled?: boolean;
     onClick?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
-    variant?: Variant;
+    variant?: 'primary' | 'secondary';
     type?: 'button' | 'submit' | 'reset';
+    size?: 'sm' | 'md' | 'lg';
 }
 
 export const Button: React.FC<ButtonProps> = (props) => {
@@ -19,25 +19,24 @@ export const Button: React.FC<ButtonProps> = (props) => {
         disabled,
         onClick,
         type,
+        size = 'md',
     } = props;
+
+    const classNames = clsx({
+        [style['btn-sm']]: size === 'sm',
+        [style.btn]: size === 'md',
+        [style['btn-lg']]: size === 'lg',
+        [style['btn-secondary']]: variant === 'secondary',
+    });
 
     return (
         <button
             onClick={onClick}
-            className={clsx(style.btn, getButtonVariantClassName(variant))}
+            className={classNames}
             disabled={disabled}
             type={type}
         >
             {label}
         </button>
     );
-};
-
-const getButtonVariantClassName = (variant?: Variant): string | null => {
-    switch (variant) {
-        case 'secondary':
-            return style['btn-secondary'];
-        default:
-            return null;
-    }
 };

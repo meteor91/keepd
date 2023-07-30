@@ -17,24 +17,20 @@
     list-style: none;
     padding: 0;
     cursor: pointer;
+    position: relative;
 
     &:hover {
       background: @gray-25;
     }
+
+    &.active {
+      background: @gray-50;
+    }
+
     .item {
       margin: 10px 16px 10px 20px;
       display: flex;
       position: relative;
-
-      &:not(:last-child):after {
-        position: absolute;
-        bottom: -10px;
-        display: block;
-        width: calc(100% - 4px);
-        height: 1px;
-        background: @gray-50;
-        content: '';
-      }
 
       .icon {
         display: flex;
@@ -53,5 +49,17 @@
         color: @gray-700;
       }
     }
+
+    &:not(:last-child):after {
+      position: absolute;
+      bottom: 0;
+      margin: 0 16px 0 20px;
+      display: block;
+      width: calc(100% - 36px);
+      height: 1px;
+      background: @gray-50;
+      content: '';
+    }
   }
+
 }

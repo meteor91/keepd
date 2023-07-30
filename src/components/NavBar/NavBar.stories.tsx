@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { NavBar, type NavBarProps } from './NavBar';
-import { DeviceTabletIcon } from '../../internal/svg-icons/DeviceTabletIcon';
-import { PackageIcon } from '../../internal/svg-icons/PackageIcon';
+import { NavBar } from './NavBar';
+import { DeviceTabletIcon, PackageIcon } from '../../icons';
 
 const meta: Meta<typeof NavBar> = {
     title: 'NavBar',
@@ -24,10 +23,12 @@ const items = [
     {
         icon: <DeviceTabletIcon />,
         label: 'item 1',
+        key: 1,
     },
     {
         icon: <PackageIcon />,
         label: 'item 2',
+        key: 2,
     },
 ];
 

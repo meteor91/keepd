@@ -26,7 +26,7 @@ export default [
             },
 
             {
-                file: 'local/redrock/dist/esm/index.js',
+                file: 'local/keepd/dist/esm/index.js',
                 format: "esm",
                 sourcemap: true,
             },
@@ -54,7 +54,7 @@ export default [
         external: [/\.less$/],
     },
     {
-        input: "local/keepd/dist/esm/types/index.d.ts",
+        input: "dist/esm/types/index.d.ts",
         output: [
             {file: "local/keepd/dist/index.d.ts", format: "esm"}
         ],

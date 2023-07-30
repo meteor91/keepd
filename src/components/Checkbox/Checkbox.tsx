@@ -1,7 +1,6 @@
 import React from 'react';
 import style from './Checkbox.module.less';
-import { CheckboxInactiveIcon } from '../../internal/svg-icons/CheckboxInactiveIcon';
-import { CheckboxActiveIcon } from '../../internal/svg-icons/CheckboxActiveIcon';
+import { CheckboxInactiveIcon, CheckboxActiveIcon } from '../../icons';
 
 export interface CheckboxProps {
     checked: boolean;

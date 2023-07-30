@@ -1,3 +1,3 @@
-// import 'styles/redrock.less';
-export * as redrockStyle from './styles/redrock.less';
+export * as keepdStyle from './styles/keepd.less';
 export * from './components';
+export * from './icons';

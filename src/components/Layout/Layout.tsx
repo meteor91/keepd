@@ -1,15 +1,28 @@
 import React from 'react';
 
 import styles from './Layout.module.less';
+import clsx from 'clsx';
 
 interface SidebarProps {
     children?: React.ReactNode;
 }
 const Sidebar: React.FC<SidebarProps> = ({ children }) => {
     return (
-        <div className={styles.sidebar}>
+        <aside className={styles.sidebar}>
             {children}
-        </div>
+        </aside>
+    );
+};
+
+interface HeaderProps {
+    children?: React.ReactNode;
+}
+
+const Header: React.FC<HeaderProps> = ({ children }) => {
+    return (
+        <header className={styles.header}>
+            {children}
+        </header>
     );
 };
 
@@ -18,22 +31,24 @@ interface ContentProps {
 }
 const Content: React.FC<ContentProps> = ({ children }) => {
     return (
-        <div className={styles.content}>
+        <section className={styles.content}>
             {children}
-        </div>
+        </section>
     );
 };
 
 interface LayoutProps {
     children?: React.ReactNode;
+    direction?: 'vertical' | 'horizontal';
 }
-export const Layout = ({ children }: LayoutProps): React.ReactElement => {
+export const Layout = ({ children, direction = 'horizontal' }: LayoutProps): React.ReactElement => {
     return (
-        <div className={styles.layout}>
+        <section className={clsx(styles.layout, direction === 'vertical' && styles.vertical)}>
             {children}
-        </div>
+        </section>
     );
 };
 
 Layout.Sidebar = Sidebar;
 Layout.Content = Content;
+Layout.Header = Header;

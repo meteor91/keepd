@@ -117,9 +117,9 @@
     "moduleResolution": "node",             // -- Follow node.js rules for finding modules
     "allowSyntheticDefaultImports": true,   // -- Assumes default exports if none are created manually
     "emitDeclarationOnly": true,             // -- Don't generate JS (rollup will do that) only export type declarations
-    "plugins": [
-      { "name": "typescript-plugin-css-modules" }
-    ],
-  },
+//    "plugins": [
+//      { "name": "typescript-plugin-css-modules" }
+//    ]
+  }
 //  "include": ["./jest-setup.ts"]
 }

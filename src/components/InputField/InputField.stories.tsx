@@ -45,6 +45,9 @@ export const Basic: Story = {
             message='Something going wrong'
         />
     ),
+    parameters: {
+        variant: 'pocket',
+    },
 };
 
 export const Error: Story = {
@@ -57,4 +60,7 @@ export const Error: Story = {
             error={true}
         />
     ),
+    parameters: {
+        variant: 'pocket',
+    },
 };

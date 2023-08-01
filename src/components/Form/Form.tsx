@@ -12,7 +12,7 @@ import { type Resolver } from 'react-hook-form/dist/types/resolvers';
 interface FormProps<T extends FieldValues> {
     onSubmit: (data: T) => void;
     children?: React.ReactNode;
-    defaultValues: DefaultValues<T>;
+    defaultValues?: DefaultValues<T>;
     resolver?: Resolver<T>;
 }
 
@@ -29,6 +29,7 @@ export const Form = <T extends FieldValues,>(props: FormProps<T>): React.ReactEl
         defaultValues,
         resolver,
         mode: 'onSubmit',
+        reValidateMode: 'onSubmit',
     });
     const { handleSubmit } = methods;
 

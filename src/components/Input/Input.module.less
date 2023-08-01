@@ -1,8 +1,10 @@
 @import "styles/colors.less";
+@import "styles/paragraphs.less";
 
 .input {
-    font-size: 1rem;
-    line-height: 1.7;
+    //font-size: 1rem;
+    //line-height: 1.7;
+    .paragraph-medium-5();
     font-weight: 400;
     color: @gray-800;
     background-color: @white;
@@ -27,7 +29,12 @@
 
     &-error {
         color: @red-600;
-        background: @red-200;
+        background: @red-25;
         border: 1px solid @red-200;
+
+        &:focus,
+        &:focus-visible {
+            border: 1px solid @red-200;
+        }
     }
 }

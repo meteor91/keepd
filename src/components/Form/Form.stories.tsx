@@ -30,4 +30,7 @@ export const Primary: Story = {
 
         </Form>
     ),
+    parameters: {
+        variant: 'pocket',
+    },
 };

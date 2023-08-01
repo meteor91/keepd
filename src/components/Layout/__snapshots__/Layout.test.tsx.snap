@@ -1,18 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Layout should render correctly 1`] = `
-<div
+<section
   class="layout"
 >
-  <div
+  <aside
     class="sidebar"
   >
     sidebar
-  </div>
-  <div
+  </aside>
+  <section
     class="content"
   >
     content
-  </div>
-</div>
+  </section>
+</section>
 `;

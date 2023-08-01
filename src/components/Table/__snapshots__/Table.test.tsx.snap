@@ -1,84 +1,82 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Table should render correct 1`] = `
-<div>
+<div
+  class="spinNested"
+>
   <div
-    class="spinNested"
+    class=""
+    data-testid="spin-content"
   >
-    <div
-      class=""
-      data-testid="spin-content"
+    <table
+      class="table"
     >
-      <table
-        class="table"
+      <thead
+        class="thead"
       >
-        <thead
-          class="thead"
+        <tr
+          class="tr"
         >
-          <tr
-            class="tr"
+          <th
+            class="cell"
           >
-            <th
-              class="cell"
-            >
-              name
-            </th>
-            <th
-              class="cell"
-            >
-              age
-            </th>
-            <th
-              class="cell"
-            >
-              game pass
-            </th>
-          </tr>
-        </thead>
-        <tbody
-          class="tbody"
+            name
+          </th>
+          <th
+            class="cell"
+          >
+            age
+          </th>
+          <th
+            class="cell"
+          >
+            game pass
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="tbody"
+      >
+        <tr
+          class="tr"
         >
-          <tr
-            class="tr"
+          <td
+            class="cell"
           >
-            <td
-              class="cell"
-            >
-              Tom
-            </td>
-            <td
-              class="cell"
-            >
-              27
-            </td>
-            <td
-              class="cell"
-            >
-              yes
-            </td>
-          </tr>
-          <tr
-            class="tr"
+            Tom
+          </td>
+          <td
+            class="cell"
           >
-            <td
-              class="cell"
-            >
-              Jerry
-            </td>
-            <td
-              class="cell"
-            >
-              22
-            </td>
-            <td
-              class="cell"
-            >
-              no
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            27
+          </td>
+          <td
+            class="cell"
+          >
+            yes
+          </td>
+        </tr>
+        <tr
+          class="tr"
+        >
+          <td
+            class="cell"
+          >
+            Jerry
+          </td>
+          <td
+            class="cell"
+          >
+            22
+          </td>
+          <td
+            class="cell"
+          >
+            no
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 `;

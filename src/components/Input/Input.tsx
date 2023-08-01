@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import styles from './Input.module.less';
+import { fixControlledValue } from '../../utils/commonUtils';
 
 export interface InputProps {
     value: string;
@@ -10,6 +11,7 @@ export interface InputProps {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     name?: string;
     type?: 'password';
+    id?: string;
 }
 
 export const Input: React.FC<InputProps> = (props) => {
@@ -21,16 +23,18 @@ export const Input: React.FC<InputProps> = (props) => {
         onChange,
         type,
         name,
+        id,
     } = props;
     return (
         <input
             className={clsx(styles.input, error && styles['input-error'])}
             placeholder={placeholder}
             onChange={onChange}
-            value={value}
+            value={fixControlledValue(value)}
             disabled={disabled}
             type={type}
             name={name}
+            id={id}
         />
     );
 };

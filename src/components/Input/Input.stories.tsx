@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { Input, type InputProps } from './Input';
 
 const meta: Meta<typeof Input> = {
@@ -11,11 +10,6 @@ const meta: Meta<typeof Input> = {
 export default meta;
 
 type Story = StoryObj<typeof Input>;
-
-// interface InputPreviewProps {
-//     disabled: boolean;
-//     error: boolean;
-// }
 
 type Props = Partial<InputProps>;
 
@@ -40,12 +34,21 @@ const InputPreview: React.FC<Props> = (props) => {
 
 export const Basic: Story = {
     render: () => <InputPreview />,
+    parameters: {
+        variant: 'pocket',
+    },
 };
 
 export const Disabled: Story = {
     render: () => <InputPreview disabled />,
+    parameters: {
+        variant: 'pocket',
+    },
 };
 
 export const Error: Story = {
     render: () => <InputPreview error value='errorVal' />,
+    parameters: {
+        variant: 'pocket',
+    },
 };

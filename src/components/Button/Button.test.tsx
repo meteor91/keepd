@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 
 import { Button } from './Button';
 
@@ -16,8 +16,8 @@ describe('Button', () => {
 
     it('should call onClick only once when clicked', () => {
         const onClickMock = jest.fn();
-        const { getByText } = render(<Button label="test" onClick={onClickMock}/>);
-        const button = getByText('test');
+        render(<Button label="test" onClick={onClickMock}/>);
+        const button = screen.getByText('test');
 
         fireEvent.click(button);
 

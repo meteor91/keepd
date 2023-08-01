@@ -32,14 +32,15 @@ describe('Form', () => {
 
         await act(() => fireEvent.submit(screen.getByText(/submit/)));
 
-
-        // await waitFor(() => {
-            expect(handleSubmitMock).toHaveBeenCalledWith({
+        expect(handleSubmitMock).toHaveBeenCalledWith(
+            {
                 title: 'test post',
                 content: 'test content',
-            }, expect.anything());
-            expect(handleSubmitMock).toHaveBeenCalledTimes(1);
-        // });
+            },
+            expect.anything(),
+        );
+        expect(handleSubmitMock).toHaveBeenCalledTimes(1);
+
     });
 
     it('should display validation error', async () => {

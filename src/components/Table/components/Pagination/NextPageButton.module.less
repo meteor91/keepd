@@ -1,0 +1,19 @@
+@import "styles/colors.less";
+
+.next-page-button {
+  background-color: Transparent;
+  border-radius: 50%;
+  border: 1px solid @gray-500;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+
+  &.disabled {
+    border: 1px solid @gray-300;
+    cursor: not-allowed;
+  }
+}

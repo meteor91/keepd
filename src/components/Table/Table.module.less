@@ -1,4 +1,5 @@
 @import "styles/colors.less";
+@import "styles/paragraphs.less";
 
 .table {
   border-collapse: collapse;
@@ -9,6 +10,8 @@
       .cell {
         background: @gray-25;
         text-align: start;
+        .paragraph-medium-6();
+        color: @slate-gray-400;
       }
     }
   }
@@ -28,6 +31,10 @@
   }
 
   .tbody {
+    .tr {
+      color: @slate-gray-500;
+      .paragraph-medium-5();
+    }
     .tr + .tr {
         border-top: @gray-100 solid 1px;
     }

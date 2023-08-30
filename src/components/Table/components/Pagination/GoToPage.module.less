@@ -1,0 +1,42 @@
+@import "styles/colors.less";
+@import "styles/paragraphs.less";
+
+.goto-page {
+  display: flex;
+
+  .label {
+    color: @gray-700;
+    .paragraph-medium-5();
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  input {
+    margin: 0;
+    appearance: none;
+    border-radius: 6px;
+    border: 1px solid @slate-gray-400;
+    width: 60px;
+    height: 28px;
+    &::placeholder {
+        color: @gray-300;
+    }
+
+    &:focus,
+    &:focus-visible {
+        outline: 0;
+        border: 1px solid @gray-500;
+    }
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+}

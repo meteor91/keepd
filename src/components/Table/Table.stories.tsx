@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { Table } from './Table';
-import { type ColumnType } from './interfaces';
+import { ColumnDef } from '@tanstack/react-table';
+import { Pagination } from './interfaces';
 
 const meta: Meta<typeof Table> = {
     title: 'Table',
@@ -20,11 +20,27 @@ export default meta;
 type Story = StoryObj<typeof Table>;
 
 export const Basic: Story = {
-    render: (args) => <Table {...args} dataSource={dataSource} columns={columns}/>,
+    render: (args) => {
+        const [pagination, setPagination] = useState<Pagination>({
+            pageIndex: 1,
+            pageSize: 5,
+        });
+        console.log(pagination);
+        return (
+            <Table
+                {...args}
+                data={dataSource}
+                columns={columns}
+                pagination={pagination}
+                onPaginationChange={setPagination}
+                pageCount={2}
+            />
+        );
+    },
 };
 
 export const NoData: Story = {
-    render: (args) => <Table {...args} dataSource={[]} columns={columns}/>,
+    render: (args) => <Table {...args} data={[]} columns={columns}/>,
 };
 
 interface ExampleData {
@@ -52,18 +68,18 @@ const dataSource: ExampleData[] = [
     },
 ];
 
-const columns: Array<ColumnType<ExampleData>> = [
+const columns: Array<ColumnDef<ExampleData>> = [
     {
-        title: 'name',
-        dataIndex: 'name',
+        header: 'Name',
+        accessorKey: 'name',
     },
     {
-        title: 'age',
-        dataIndex: 'age',
+        header: 'Age',
+        accessorKey: 'age',
     },
     {
-        title: 'game pass',
-        dataIndex: 'gamePass',
-        render: (value) => value.enabled === true ? 'yes' : 'no',
+        header: 'Game pass',
+        accessorKey: 'gamePass',
+        accessorFn: ({ gamePass }) => gamePass.enabled ? 'yes' : 'no',
     },
 ];

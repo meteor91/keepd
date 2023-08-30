@@ -20,17 +20,17 @@ exports[`Table should render correct 1`] = `
           <th
             class="cell"
           >
-            name
+            Name
           </th>
           <th
             class="cell"
           >
-            age
+            Age
           </th>
           <th
             class="cell"
           >
-            game pass
+            Game pass
           </th>
         </tr>
       </thead>

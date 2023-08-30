@@ -1,2 +1,2 @@
 export { Table, type TableProps } from './Table';
-export { type ColumnType } from './interfaces';
+export { ColumnDef } from '@tanstack/react-table';

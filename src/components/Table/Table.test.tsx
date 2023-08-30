@@ -1,9 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { ColumnDef } from './index';
 import { Table } from './Table';
-import { type ColumnType } from './interfaces';
 
-interface Data {
+
+interface ExampleData {
     name: string;
     age: number;
     gamePass: {
@@ -12,7 +13,7 @@ interface Data {
 }
 
 describe('Table', () => {
-    const dataSource: Data[] = [
+    const dataSource: ExampleData[] = [
         {
             name: 'Tom',
             age: 27,
@@ -29,42 +30,88 @@ describe('Table', () => {
         },
     ];
 
-    const columns: Array<ColumnType<Data>> = [
+    const columns: Array<ColumnDef<ExampleData>> = [
         {
-            title: 'name',
-            dataIndex: 'name',
+            header: 'Name',
+            accessorKey: 'name',
         },
         {
-            title: 'age',
-            dataIndex: 'age',
+            header: 'Age',
+            accessorKey: 'age',
         },
         {
-            title: 'game pass',
-            dataIndex: 'gamePass',
-            render: (value: any) => value.enabled === true ? 'yes' : 'no',
+            header: 'Game pass',
+            accessorKey: 'gamePass',
+            accessorFn: ({ gamePass }) => gamePass.enabled ? 'yes' : 'no',
         },
     ];
 
+
     it('should render correct', () => {
         const { container } = render(
-            <Table dataSource={dataSource} columns={columns}/>,
+            <Table data={dataSource} columns={columns}/>,
         );
+
         expect(container.firstChild).toMatchSnapshot();
     });
 
     it('table loading', () => {
         const { rerender } = render(
-            <Table dataSource={[]} columns={columns} loading={true}/>,
+            <Table data={[]} columns={columns} loading={true}/>,
         );
         expect(screen.getByTestId('spinner')).toBeInTheDocument();
-        rerender(<Table dataSource={[]} columns={columns} loading={false}/>);
+        rerender(<Table data={[]} columns={columns} loading={false}/>);
         expect(screen.queryByTestId('spinner')).not.toBeInTheDocument();
     });
 
     it('display no data', () => {
         render(
-            <Table dataSource={[]} columns={columns} emptyText={'no data text'}/>,
+            <Table data={[]} columns={columns} emptyText="no data"/>,
         );
-        expect(screen.getByText('no data text')).toBeInTheDocument();
+        expect(screen.getByText('no data')).toBeInTheDocument();
+    });
+
+    it('paginate', () => {
+        const mockOnPaginationChange = jest.fn();
+
+        const paginationStatePage1 = { pageSize: 5, pageIndex: 0 };
+        const paginationStatePage2 = { pageSize: 5, pageIndex: 1 };
+
+        const { rerender } = render(
+            <Table
+                data={dataSource}
+                columns={columns}
+                onPaginationChange={(updater) => {
+                    // @ts-ignore
+                    mockOnPaginationChange(updater(paginationStatePage1));
+                }}
+                pagination={paginationStatePage1}
+                pageCount={2}
+            />,
+        );
+
+        expect(screen.getByTestId('prev-button')).toBeDisabled();
+
+        fireEvent.click(screen.getByTestId('next-button'));
+        expect(mockOnPaginationChange).toHaveBeenCalledTimes(1);
+        expect(mockOnPaginationChange).toHaveBeenCalledWith(paginationStatePage2);
+        
+        rerender(
+            <Table
+                data={dataSource}
+                columns={columns}
+                onPaginationChange={(updater) => {
+                    // @ts-ignore
+                    mockOnPaginationChange(updater(paginationStatePage2));
+                }}
+                pagination={paginationStatePage2}
+                pageCount={2}
+            />,            
+        );
+
+        expect(screen.getByTestId('next-button')).toBeDisabled();
+        fireEvent.click(screen.getByTestId('prev-button'));
+        expect(mockOnPaginationChange).toHaveBeenCalledTimes(2);
+        expect(mockOnPaginationChange).toHaveBeenCalledWith(paginationStatePage1);
     });
 });

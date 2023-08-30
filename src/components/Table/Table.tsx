@@ -1,46 +1,58 @@
 import React from 'react';
-import { type ColumnType, type RowKey } from './interfaces';
+import { useReactTable, ColumnDef, getCoreRowModel, OnChangeFn } from '@tanstack/react-table';
+import { Pagination as PaginationProps } from './interfaces';
 import style from './Table.module.less';
 import { BodyRow } from './components/BodyRow';
+import { Pagination } from './components/Pagination/Pagination';
+import { HeaderRow } from './components/HeaderRow';
 import { Spin } from '../Spin';
+import { PaginationState } from '@tanstack/table-core/src/features/Pagination';
 
 export interface TableProps<RecordType> {
-    dataSource: RecordType[];
-    columns: Array<ColumnType<RecordType>>;
-    rowKey?: RowKey<RecordType>;
+    data: RecordType[];
+    columns: Array<ColumnDef<RecordType>>;
     loading?: boolean;
     emptyText?: string;
+    pagination?: PaginationProps;
+    pageCount?: number;
+    onPaginationChange?: OnChangeFn<PaginationState>;
 }
 
 // eslint-disable-next-line @typescript-eslint/comma-dangle
 export const Table = <T, >(props: TableProps<T>): React.ReactElement => {
     const {
         columns,
-        dataSource,
-        rowKey,
+        data,
         emptyText,
         loading,
+        pagination,
+        onPaginationChange,
+        pageCount,
     } = props;
+
+    const table = useReactTable<T>({
+        data,
+        columns,
+        state: {
+            pagination,
+        },
+        pageCount: pageCount,
+        getCoreRowModel: getCoreRowModel(),
+        manualPagination: true,
+        onPaginationChange: onPaginationChange,
+    });
+
     return (
         <Spin spinning={loading}>
             <table className={style.table}>
                 <thead className={style.thead}>
-                    <tr className={style.tr}>
-                        {columns.map((column: ColumnType<T>) => {
-                            return (
-                                <th key={column.dataIndex as string} className={style.cell}>
-                                    {column.title}
-                                </th>
-                            );
-                        })}
-                    </tr>
+                    {table.getHeaderGroups().map((headerGroup, index) => (
+                        <HeaderRow<T> headerGroup={headerGroup} key={index}/>
+                    ))}
                 </thead>
                 <tbody className={style.tbody}>
-                    {dataSource?.length > 0
-                        ? (dataSource.map((rowData: T, index) => {
-                            return <BodyRow key={index} rowData={rowData} columns={columns} rowKey={rowKey} />;
-                        }))
-                        : (
+                    {table.getRowModel().rows.length === 0
+                        ? (
                             <tr className={style.tr}>
                                 <td className={style.cell} colSpan={columns.length}>
                                     <div className={style.noData}>
@@ -49,9 +61,17 @@ export const Table = <T, >(props: TableProps<T>): React.ReactElement => {
                                 </td>
                             </tr>
                         )
+                        : table.getRowModel().rows.map(row => (
+                            <BodyRow<T> row={row} key={row.id} />
+                        ))
                     }
                 </tbody>
             </table>
+            {pagination && (
+                <Pagination<T>
+                    table={table}
+                />
+            )}
         </Spin>
     );
 };

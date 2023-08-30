@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputField should render correct 1`] = `
+<div
+  class="formInput"
+>
+  <label
+    class="label"
+    for="input-:r0:"
+  >
+    test field
+  </label>
+  <input
+    class="input"
+    id="input-:r0:"
+    readonly=""
+    value="test"
+  />
+  <div
+    class="message"
+    role="alert"
+  >
+    test message
+  </div>
+</div>
+`;

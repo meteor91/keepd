@@ -10,7 +10,7 @@ export interface InputProps {
     error?: boolean;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     name?: string;
-    type?: 'password';
+    type?: 'password' | 'submit';
     id?: string;
 }
 
@@ -34,6 +34,7 @@ export const Input: React.FC<InputProps> = (props) => {
             disabled={disabled}
             type={type}
             name={name}
+            readOnly={!onChange}
             id={id}
         />
     );

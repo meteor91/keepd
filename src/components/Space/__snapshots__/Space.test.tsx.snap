@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Space should render correctly 1`] = `
+<div
+  class="space space-end"
+>
+  <div>
+    <div>
+      test 1
+    </div>
+  </div>
+  <div>
+    <div>
+      test 2
+    </div>
+  </div>
+</div>
+`;

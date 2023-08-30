@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spin should render correct 1`] = `
+<div
+  class="spinNested"
+>
+  <div
+    class="spin"
+    data-testid="spinner"
+  >
+    <div
+      class="loader"
+    />
+  </div>
+  <div
+    class="contentBlur"
+    data-testid="spin-content"
+  >
+    content
+  </div>
+</div>
+`;

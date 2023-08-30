@@ -10,9 +10,18 @@ exports[`Layout should render correctly 1`] = `
     sidebar
   </aside>
   <section
-    class="content"
+    class="layout vertical"
   >
-    content
+    <header
+      class="header"
+    >
+      Header
+    </header>
+    <section
+      class="content"
+    >
+      content
+    </section>
   </section>
 </section>
 `;

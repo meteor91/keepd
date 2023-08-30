@@ -1,3 +1,14 @@
+@import "styles/colors.less";
+@import "styles/paragraphs.less";
+
 .text {
-    line-height: (10/6);
+    .paragraph-medium-5();
+
+    &.error {
+        color: @red-600;
+    }
+
+    &.success {
+        color: @green-400;
+    }
 }

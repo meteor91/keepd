@@ -11,19 +11,35 @@ export interface NavBarProps {
     items: NavBarItem[];
     bordered?: boolean;
     selectedKey?: string | number;
+    wrapper?: React.FC;
 }
 
+interface DefaultWrapperProps{
+    children: React.ReactNode;
+}
+const DefaultWrapper: React.FC<DefaultWrapperProps> = ({ children }) => (
+    <div className={style.label}>{children}</div>
+);
+
+
 export const NavBar: React.FC<NavBarProps> = (props) => {
-    const { items, bordered, selectedKey } = props;
+    const {
+        items,
+        bordered,
+        selectedKey,
+        wrapper,
+    } = props;
+
+    const WrapperComponent = wrapper ?? DefaultWrapper;
 
     return (
         <ul className={clsx(style['nav-bar'], bordered && style.bordered)}>
             {items.map(item => (
                 <li key={item.key} className={clsx((item.key === selectedKey) && style.active)}>
-                    <div className={style.item}>
+                    <WrapperComponent>
                         {item.icon && <div className={style.icon}>{item.icon}</div>}
                         <div className={style.label}>{item.label}</div>
-                    </div>
+                    </WrapperComponent>
                 </li>
             ))}
         </ul>

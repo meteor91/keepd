@@ -1,6 +1,6 @@
 export function fixControlledValue<T>(value: T) {
-  if (typeof value === 'undefined' || value === null) {
-    return '';
-  }
-  return String(value);
+    if (typeof value === 'undefined' || value === null) {
+        return '';
+    }
+    return String(value);
 }

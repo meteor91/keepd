@@ -8,4 +8,5 @@ export { Row, Col } from './Grid';
 export { Form, FieldError } from './Form';
 export { Text } from './Text';
 export { Layout } from './Layout';
+export { Space } from './Space';
 export { NavBar, type NavBarItem, type NavBarProps } from './NavBar';

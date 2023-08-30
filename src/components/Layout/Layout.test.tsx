@@ -8,7 +8,10 @@ describe('Layout', () => {
         const { container } = render(
             <Layout>
                 <Layout.Sidebar>sidebar</Layout.Sidebar>
-                <Layout.Content>content</Layout.Content>
+                <Layout direction="vertical">
+                    <Layout.Header>Header</Layout.Header>
+                    <Layout.Content>content</Layout.Content>
+                </Layout>
             </Layout>,
         );
         expect(container.firstChild).toMatchSnapshot();

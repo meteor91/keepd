@@ -1,6 +1,7 @@
 {
   "name": "keepd",
   "version": "1.0.0",
+  "repository": "https://github.com/meteor91/keepd.git",
   "description": "",
   "scripts": {
     "test": "jest",
